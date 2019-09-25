@@ -36,6 +36,10 @@ def format_ns(d):
     return ', '.join(parts)
 
 
+def boldify(text):
+    return f'\033[1m{text}\033[0m'
+
+
 if __name__ == '__main__':
 
     parser = argparse.ArgumentParser()
@@ -99,7 +103,7 @@ if __name__ == '__main__':
         row_format = '{:>{width}}' * len(headings)
 
         # Write down the table headings
-        table = row_format.format(*headings, width=width) + '\n'
+        table = boldify(row_format.format(*headings, width=width)) + '\n'
 
         # Write down the true labels row by row
         table += '\n'.join((
@@ -118,7 +122,7 @@ if __name__ == '__main__':
         ))
 
         print()
-        print(func_name)
+        print(boldify(func_name))
         print()
         print(table)
         print()
