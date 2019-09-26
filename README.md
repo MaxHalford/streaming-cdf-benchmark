@@ -4,8 +4,9 @@ This is a benchmark to compare algorithms that estimate [cumulative density func
 
 ## Methods
 
-- **Histogram**: Custom implementation of [*A Streaming Parallel Decision Tree Algorithm*](http://jmlr.org/papers/volume11/ben-haim10a/ben-haim10a.pdf). I implemented this myself. You can find another implementation written in Golang [here](https://github.com/VividCortex/gohistogram).
+- **Histogram**: Custom variant of [*A Streaming Parallel Decision Tree Algorithm*](http://jmlr.org/papers/volume11/ben-haim10a/ben-haim10a.pdf). I implemented this myself. You can find another implementation written in Golang [here](https://github.com/VividCortex/gohistogram).
 - **KLL**: Implementation of [*Optimal Quantile Approximation in Streams*](https://arxiv.org/abs/1603.05346). I found an implementation [here](https://github.com/edoliberty/streaming-quantiles), to which I added a `cdf(x)` method. Furthermore I made the algorithm deterministic by adding a `seed` parameter.
+- **StreamHist**: Implementation of [*A Streaming Parallel Decision Tree Algorithm*](http://jmlr.org/papers/volume11/ben-haim10a/ben-haim10a.pdf). I found an implementation [here](https://github.com/carsonfarmer/streamhist).
 - **t-digest**: Implementation of [*Computing Extremely Accurate Quantiles Using t-Digests*](https://arxiv.org/abs/1902.04023). I found an implementation [here](https://github.com/CamDavidsonPilon/tdigest).
 
 Each method has an `update(x)` method as well as a `cdf(x)` method. I evaluated each method by updating it with a stream of `n` values. I stored and then sorted all the streamed values in order to obtain the real CDF function. I then compared took `m` uniformly spaced values and calculated the absolute error between the real CDF values and the output each method's `cdf(x)` function.
@@ -25,14 +26,16 @@ Each method has an `update(x)` method as well as a `cdf(x)` method. I evaluated 
 Bimodal gaussian
 
      Method           Error (mean)  Error (99th quantile)     Update time (mean)      Query time (mean)
-  Histogram             0.00009279             0.00039842             6μs, 250ns                  227ns
-        KLL             0.00112768             0.00395346             1μs, 469ns             2μs, 826ns
-   t-digest             0.00006525             0.00030021            38μs, 740ns            21μs, 288ns
+  Histogram             0.00009279             0.00039842             6μs, 679ns                  234ns
+        KLL             0.00114572             0.00397040             1μs, 622ns             2μs, 858ns
+ StreamHist             0.00010556             0.00085700            67μs, 382ns                  183ns
+   t-digest             0.00006525             0.00030021            42μs, 895ns            21μs, 328ns
 
 Exponential
 
      Method           Error (mean)  Error (99th quantile)     Update time (mean)      Query time (mean)
-  Histogram             0.00014409             0.00073424             6μs, 119ns                  120ns
-        KLL             0.00122809             0.00399595             1μs, 411ns             2μs, 900ns
-   t-digest             0.00005562             0.00021403            38μs, 371ns            22μs, 225ns
+  Histogram             0.00014409             0.00073424             7μs, 205ns                  129ns
+        KLL             0.00123010             0.00400120             1μs, 744ns             2μs, 918ns
+ StreamHist             0.02216442             0.99592787            74μs, 307ns                  151ns
+   t-digest             0.00005562             0.00021403            45μs, 699ns            22μs, 452ns
 ```

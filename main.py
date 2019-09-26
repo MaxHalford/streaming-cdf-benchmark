@@ -2,9 +2,11 @@ import argparse
 import collections
 import random
 import statistics
+import sys; sys.path.append('streamhist')
 import time
 
 import numpy as np
+import streamhist
 import tdigest
 import tqdm
 
@@ -64,6 +66,7 @@ if __name__ == '__main__':
         methods = {
             'Histogram': histogram.Histogram(max_bins=256),
             'KLL': kll.KLL(k=256, seed=42),
+            'StreamHist': streamhist.StreamHist(maxbins=256),
             't-digest': tdigest.TDigest(K=256),
         }
         errors = collections.defaultdict(list)
