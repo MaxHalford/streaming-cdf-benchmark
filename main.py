@@ -118,9 +118,9 @@ if __name__ == '__main__':
             row_format.format(
                 name,
                 # Estimation error
-                f'{statistics.mean(errors[name]):.8f}',
-                f'{np.quantile(errors[name], .5):.8f}',
-                f'{np.quantile(errors[name], .99):.8f}',
+                f'{statistics.mean(errors[name]):.7f}',
+                f'{np.quantile(errors[name], .5):.7f}',
+                f'{np.quantile(errors[name], .99):.7f}',
                 # Update duration
                 format_ns(update_durations[name] / n),
                 # Querying duration

@@ -27,20 +27,20 @@ Each method has an `update(x)` method as well as a `cdf(x)` method. I evaluated 
 Bimodal gaussian
 
        Method   Error (mean)   Error (median)   Error (99th quantile)   Update time (mean)   Query time (mean)
-    Histogram     0.00009279       0.00006699              0.00039842          11μs, 103ns               362ns
-     Gaussian     0.13950737       0.13762724              0.29275235           1μs, 431ns                29ns
-          KLL     0.00131907       0.00111000              0.00399090           1μs, 791ns          1μs, 867ns
-   StreamHist     0.00010556       0.00006053              0.00085700          75μs, 899ns               286ns
-     t-digest     0.00006525       0.00004522              0.00030021          45μs, 488ns          23μs, 23ns
+    Histogram      0.0000928        0.0000670               0.0003984           9μs, 894ns               263ns
+     Gaussian      0.1395074        0.1376272               0.2927523           1μs, 274ns                19ns
+          KLL      0.0013191        0.0011100               0.0039909           1μs, 592ns          1μs, 597ns
+   StreamHist      0.0001056        0.0000605               0.0008570          71μs, 800ns               218ns
+     t-digest      0.0000653        0.0000452               0.0003002          42μs, 900ns         20μs, 794ns
 
 Exponential
 
        Method   Error (mean)   Error (median)   Error (99th quantile)   Update time (mean)   Query time (mean)
-    Histogram     0.00014409       0.00009378              0.00073424          10μs, 832ns               185ns
-     Gaussian     0.21126915       0.19606587              0.43767641           1μs, 346ns                26ns
-          KLL     0.00135660       0.00117000              0.00435130           1μs, 705ns          1μs, 837ns
-   StreamHist     0.02216442       0.00014417              0.99592787          76μs, 667ns               211ns
-     t-digest     0.00005562       0.00004158              0.00021403          45μs, 221ns         22μs, 566ns
+    Histogram      0.0001441        0.0000938               0.0007342          10μs, 184ns               166ns
+     Gaussian      0.2112691        0.1960659               0.4376764           1μs, 271ns                23ns
+          KLL      0.0013566        0.0011700               0.0043513           1μs, 654ns          1μs, 748ns
+   StreamHist      0.0221644        0.0001442               0.9959279          75μs, 621ns               190ns
+     t-digest      0.0000556        0.0000416               0.0002140          44μs, 473ns         22μs, 517ns
 ```
 
 ## To do
