@@ -1,6 +1,3 @@
 [submodule "streamhist"]
 	path = streamhist
 	url = https://github.com/carsonfarmer/streamhist
-[submodule "kll"]
-	path = kll
-	url = https://github.com/edoliberty/streaming-quantiles
