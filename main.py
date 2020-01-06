@@ -6,12 +6,13 @@ import sys; sys.path.append('streamhist')
 import time
 
 import numpy as np
-import streamhist
 import tdigest
 import tqdm
 
+import gaussian
 import histogram
 from kll import kll
+import streamhist
 
 
 def format_ns(d):
@@ -65,6 +66,7 @@ if __name__ == '__main__':
 
         methods = {
             'Histogram': histogram.Histogram(max_bins=256),
+            'Gaussian': gaussian.Gaussian(),
             'KLL': kll.KLL(k=256, seed=42),
             'StreamHist': streamhist.StreamHist(maxbins=256),
             't-digest': tdigest.TDigest(K=256),
@@ -98,15 +100,18 @@ if __name__ == '__main__':
         headings = [
             'Method',
             'Error (mean)',
+            'Error (median)',
             'Error (99th quantile)',
             'Update time (mean)',
             'Query time (mean)',
         ]
-        width = max(map(len, headings)) + 2
-        row_format = '{:>{width}}' * len(headings)
+
+        col_widths = list(map(len, headings))
+        col_widths[0] += 5
+        row_format = ' '.join(['{:>' + str(width + 2) + 's}' for width in col_widths])
 
         # Write down the table headings
-        table = boldify(row_format.format(*headings, width=width)) + '\n'
+        table = boldify(row_format.format(*headings)) + '\n'
 
         # Write down the true labels row by row
         table += '\n'.join((
@@ -114,12 +119,12 @@ if __name__ == '__main__':
                 name,
                 # Estimation error
                 f'{statistics.mean(errors[name]):.8f}',
+                f'{np.quantile(errors[name], .5):.8f}',
                 f'{np.quantile(errors[name], .99):.8f}',
                 # Update duration
                 format_ns(update_durations[name] / n),
                 # Querying duration
-                format_ns(query_durations[name] / n),
-                width=width
+                format_ns(query_durations[name] / n)
             )
             for name in methods
         ))

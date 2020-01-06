@@ -5,6 +5,7 @@ This is a benchmark to compare algorithms that estimate [cumulative density func
 ## Methods
 
 - **Histogram**: Custom variant of [*A Streaming Parallel Decision Tree Algorithm*](http://jmlr.org/papers/volume11/ben-haim10a/ben-haim10a.pdf). I implemented this myself.
+- **Gaussian**: Uses the CDF of a [Gaussian distribution](https://www.wikiwand.com/en/Normal_distribution) whose parameters `μ` and `σ` are updated online. This only works well in the special case where the data follows a normal distribution. Regardless, this method is still used in practice, for example in the online decision trees from [scikit-multiflow](https://github.com/scikit-multiflow/scikit-multiflow) as of version 0.4.1.
 - **KLL**: Implementation of [*Optimal Quantile Approximation in Streams*](https://arxiv.org/abs/1603.05346). I found an implementation [here](https://github.com/edoliberty/streaming-quantiles), to which I added a `cdf(x)` method. Furthermore I made the algorithm deterministic by adding a `seed` parameter.
 - **StreamHist**: Implementation of [*A Streaming Parallel Decision Tree Algorithm*](http://jmlr.org/papers/volume11/ben-haim10a/ben-haim10a.pdf). I found an implementation [here](https://github.com/carsonfarmer/streamhist).
 - **t-digest**: Implementation of [*Computing Extremely Accurate Quantiles Using t-Digests*](https://arxiv.org/abs/1902.04023). I found an implementation [here](https://github.com/CamDavidsonPilon/tdigest).
@@ -25,17 +26,25 @@ Each method has an `update(x)` method as well as a `cdf(x)` method. I evaluated 
 ```
 Bimodal gaussian
 
-     Method           Error (mean)  Error (99th quantile)     Update time (mean)      Query time (mean)
-  Histogram             0.00009279             0.00039842             6μs, 679ns                  234ns
-        KLL             0.00114572             0.00397040             1μs, 622ns             2μs, 858ns
- StreamHist             0.00010556             0.00085700            67μs, 382ns                  183ns
-   t-digest             0.00006525             0.00030021            42μs, 895ns            21μs, 328ns
+       Method   Error (mean)   Error (median)   Error (99th quantile)   Update time (mean)   Query time (mean)
+    Histogram     0.00009279       0.00006699              0.00039842          11μs, 103ns               362ns
+     Gaussian     0.13950737       0.13762724              0.29275235           1μs, 431ns                29ns
+          KLL     0.00131907       0.00111000              0.00399090           1μs, 791ns          1μs, 867ns
+   StreamHist     0.00010556       0.00006053              0.00085700          75μs, 899ns               286ns
+     t-digest     0.00006525       0.00004522              0.00030021          45μs, 488ns          23μs, 23ns
 
 Exponential
 
-     Method           Error (mean)  Error (99th quantile)     Update time (mean)      Query time (mean)
-  Histogram             0.00014409             0.00073424             7μs, 205ns                  129ns
-        KLL             0.00123010             0.00400120             1μs, 744ns             2μs, 918ns
- StreamHist             0.02216442             0.99592787            74μs, 307ns                  151ns
-   t-digest             0.00005562             0.00021403            45μs, 699ns            22μs, 452ns
+       Method   Error (mean)   Error (median)   Error (99th quantile)   Update time (mean)   Query time (mean)
+    Histogram     0.00014409       0.00009378              0.00073424          10μs, 832ns               185ns
+     Gaussian     0.21126915       0.19606587              0.43767641           1μs, 346ns                26ns
+          KLL     0.00135660       0.00117000              0.00435130           1μs, 705ns          1μs, 837ns
+   StreamHist     0.02216442       0.00014417              0.99592787          76μs, 667ns               211ns
+     t-digest     0.00005562       0.00004158              0.00021403          45μs, 221ns         22μs, 566ns
 ```
+
+## To do
+
+- [Space-Efficient Online Computation of Quantile Summaries](http://infolab.stanford.edu/~datar/courses/cs361a/papers/quantiles.pdf)
+- [Effective Computation of Biased Quantiles over Data Streams](https://www.cs.rutgers.edu/~muthu/bquant.pdf)
+- [incubator-datasketches-cpp](https://github.com/apache/incubator-datasketches-cpp/tree/master/python) (not sure about this, didn't take too good a look)
