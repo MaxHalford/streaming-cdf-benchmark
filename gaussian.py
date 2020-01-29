@@ -17,7 +17,7 @@ class Gaussian:
         self.σ += ((x - μ) * (x - self.μ) - self.σ) / self.n
 
     def cdf(self, x):
-        return .5 * (1 + math.erf((x - self.μ) / (self.σ * math.sqrt(2))))
+        return .5 * (1 + math.erf((x - self.μ) / (self.σ ** .5 * math.sqrt(2))))
 
     def __repr__(self):
-        return f'𝒩(μ={self.μ:.3f}, σ={self.σ:.3f})'
+        return f'𝒩(μ={self.μ:.3f}, σ={self.σ ** .5:.3f})'

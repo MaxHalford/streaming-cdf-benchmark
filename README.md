@@ -24,23 +24,32 @@ Each method has an `update(x)` method as well as a `cdf(x)` method. I evaluated 
 ## Results
 
 ```
+Unimodal gaussian
+
+       Method   Error (mean)   Error (median)   Error (99th quantile)   Update time (mean)   Query time (mean)
+    Histogram      0.0000924        0.0000626               0.0004189          16μs, 635ns               436ns
+     Gaussian      0.0004454        0.0003688               0.0016372           2μs, 185ns                33ns
+          KLL      0.0012744        0.0011500               0.0040004           2μs, 681ns          2μs, 507ns
+   StreamHist      0.0001377        0.0000833               0.0008446          119μs, 83ns               337ns
+     t-digest      0.0000561        0.0000399               0.0002508           69μs, 64ns         34μs, 270ns
+
 Bimodal gaussian
 
        Method   Error (mean)   Error (median)   Error (99th quantile)   Update time (mean)   Query time (mean)
-    Histogram      0.0000928        0.0000670               0.0003984           9μs, 894ns               263ns
-     Gaussian      0.1395074        0.1376272               0.2927523           1μs, 274ns                19ns
-          KLL      0.0013191        0.0011100               0.0039909           1μs, 592ns          1μs, 597ns
-   StreamHist      0.0001056        0.0000605               0.0008570          71μs, 800ns               218ns
-     t-digest      0.0000653        0.0000452               0.0003002          42μs, 900ns         20μs, 794ns
+    Histogram      0.0000910        0.0000642               0.0004033          16μs, 529ns               403ns
+     Gaussian      0.0510183        0.0448778               0.1260782           2μs, 145ns                34ns
+          KLL      0.0013514        0.0011500               0.0041501           2μs, 653ns          2μs, 546ns
+   StreamHist      0.0001112        0.0000696               0.0005455         121μs, 111ns               331ns
+     t-digest      0.0000599        0.0000422               0.0002451            69μs, 5ns         33μs, 276ns
 
 Exponential
 
        Method   Error (mean)   Error (median)   Error (99th quantile)   Update time (mean)   Query time (mean)
-    Histogram      0.0001441        0.0000938               0.0007342          10μs, 184ns               166ns
-     Gaussian      0.2112691        0.1960659               0.4376764           1μs, 271ns                23ns
-          KLL      0.0013566        0.0011700               0.0043513           1μs, 654ns          1μs, 748ns
-   StreamHist      0.0221644        0.0001442               0.9959279          75μs, 621ns               190ns
-     t-digest      0.0000556        0.0000416               0.0002140          44μs, 473ns         22μs, 517ns
+    Histogram      0.0001155        0.0000837               0.0004515          16μs, 813ns               205ns
+     Gaussian      0.0769323        0.0827737               0.1511332           2μs, 188ns                30ns
+          KLL      0.0012610        0.0010600               0.0040301           2μs, 689ns          2μs, 452ns
+   StreamHist      0.0132580        0.0001553               0.9970128         122μs, 528ns               243ns
+     t-digest      0.0000575        0.0000419               0.0002502          70μs, 837ns          32μs, 59ns
 ```
 
 ## To do

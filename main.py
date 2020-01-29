@@ -58,6 +58,7 @@ if __name__ == '__main__':
     X = [None] * n
 
     random_funcs = {
+        'Unimodal gaussian': lambda: rng.gauss(5, 3),
         'Bimodal gaussian': lambda: rng.gauss(5, 1) if rng.random() < .5 else rng.gauss(10, 2),
         'Exponential': lambda: rng.expovariate(5)
     }
