@@ -26,30 +26,30 @@ Each method has an `update(x)` method as well as a `cdf(x)` method. I evaluated 
 ```
 Unimodal gaussian
 
-       Method   Error (mean)   Error (median)   Error (99th quantile)   Update time (mean)   Query time (mean)
-    Histogram      0.0000924        0.0000626               0.0004189          16μs, 635ns               436ns
-     Gaussian      0.0004454        0.0003688               0.0016372           2μs, 185ns                33ns
-          KLL      0.0012744        0.0011500               0.0040004           2μs, 681ns          2μs, 507ns
-   StreamHist      0.0001377        0.0000833               0.0008446          119μs, 83ns               337ns
-     t-digest      0.0000561        0.0000399               0.0002508           69μs, 64ns         34μs, 270ns
+       Method   Error (mean)   Error (median)   Error (99th quantile)   Update time (mean)   Query time (mean)   Memory
+    Histogram      0.0000924        0.0000626               0.0004189          15μs, 549ns               412ns  65.8KiB
+     Gaussian      0.0004454        0.0003688               0.0016372            2μs, 76ns                30ns   462.0B
+          KLL      0.0012744        0.0011500               0.0040004           2μs, 531ns          2μs, 404ns  12.0KiB
+   StreamHist      0.0001377        0.0000833               0.0008446          118μs, 10ns               328ns  28.9KiB
+     t-digest      0.0000561        0.0000399               0.0002508          68μs, 253ns         33μs, 774ns   708.0B
 
 Bimodal gaussian
 
-       Method   Error (mean)   Error (median)   Error (99th quantile)   Update time (mean)   Query time (mean)
-    Histogram      0.0000910        0.0000642               0.0004033          16μs, 529ns               403ns
-     Gaussian      0.0510183        0.0448778               0.1260782           2μs, 145ns                34ns
-          KLL      0.0013514        0.0011500               0.0041501           2μs, 653ns          2μs, 546ns
-   StreamHist      0.0001112        0.0000696               0.0005455         121μs, 111ns               331ns
-     t-digest      0.0000599        0.0000422               0.0002451            69μs, 5ns         33μs, 276ns
+       Method   Error (mean)   Error (median)   Error (99th quantile)   Update time (mean)   Query time (mean)   Memory
+    Histogram      0.0000910        0.0000642               0.0004033          18μs, 289ns               449ns  66.0KiB
+     Gaussian      0.0510183        0.0448778               0.1260782           2μs, 335ns                39ns   462.0B
+          KLL      0.0013514        0.0011500               0.0041501           2μs, 978ns          2μs, 814ns  12.0KiB
+   StreamHist      0.0001112        0.0000696               0.0005455         136μs, 632ns               373ns  28.9KiB
+     t-digest      0.0000599        0.0000422               0.0002451          77μs, 287ns         36μs, 727ns   708.0B
 
 Exponential
 
-       Method   Error (mean)   Error (median)   Error (99th quantile)   Update time (mean)   Query time (mean)
-    Histogram      0.0001155        0.0000837               0.0004515          16μs, 813ns               205ns
-     Gaussian      0.0769323        0.0827737               0.1511332           2μs, 188ns                30ns
-          KLL      0.0012610        0.0010600               0.0040301           2μs, 689ns          2μs, 452ns
-   StreamHist      0.0132580        0.0001553               0.9970128         122μs, 528ns               243ns
-     t-digest      0.0000575        0.0000419               0.0002502          70μs, 837ns          32μs, 59ns
+       Method   Error (mean)   Error (median)   Error (99th quantile)   Update time (mean)   Query time (mean)   Memory
+    Histogram      0.0001155        0.0000837               0.0004515          15μs, 791ns               204ns  64.3KiB
+     Gaussian      0.0769323        0.0827737               0.1511332            2μs, 30ns                31ns   462.0B
+          KLL      0.0012610        0.0010600               0.0040301           2μs, 553ns          2μs, 429ns  12.0KiB
+   StreamHist      0.0132580        0.0001553               0.9970128         120μs, 798ns               246ns  28.9KiB
+     t-digest      0.0000575        0.0000419               0.0002502          68μs, 747ns          32μs, 85ns   708.0B
 ```
 
 ## To do
