@@ -52,8 +52,9 @@ Exponential
      t-digest      0.0000575        0.0000419               0.0002502          68μs, 747ns          32μs, 85ns   708.0B
 ```
 
-## To do
+## To try out
 
 - [Space-Efficient Online Computation of Quantile Summaries](http://infolab.stanford.edu/~datar/courses/cs361a/papers/quantiles.pdf)
 - [Effective Computation of Biased Quantiles over Data Streams](https://www.cs.rutgers.edu/~muthu/bquant.pdf)
 - [incubator-datasketches-cpp](https://github.com/apache/incubator-datasketches-cpp/tree/master/python) (not sure about this, didn't take too good a look)
+- [Quantiles over Data Streams: Experimental Comparisons, NewAnalyses, and Further Improvements](http://dimacs.rutgers.edu/~graham/pubs/papers/nquantvldbj.pdf)
